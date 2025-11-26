@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+.fondo{
+  background-color: rgba(255, 255, 255, 0.464);
+  margin: 50px;
+  margin-top: 2em;
+  margin-bottom: 3em;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  align-items: center; /* Centra horizontalmente los elementos hijos directos (marquee y container) */
+  border-radius: 10px;
+  display: flex; /* Añade flex a .fondo para centrar su contenido también si es necesario */
+  flex-direction: column; /* Para que el marquee y el container estén uno encima del otro */
+  
+}
+.fondoEntero{
+  background-color: rgb(255, 255, 255);
+  margin-top: 2em;
+  margin-bottom: 2em;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex; /* Añade flex a .fondo para centrar su contenido también si es necesario */
+  flex-direction: column; /* Para que el marquee y el container estén uno encima del otro */
+  align-items: center; /* Centra horizontalmente los elementos hijos directos (marquee y container) */
+}
+/* styles.css */
+body {
+  background-image: url('https://fondosmil.co/fondo/67296.jpg'); /* Ruta a tu imagen de fondo */
+  background-repeat: repeat; /* Hace que la imagen se repita tanto horizontal como verticalmente */
+  background-size: auto; /* Mantiene el tamaño original de la imagen */
+  background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll (opcional) */
+  /* Opcional: Color de fondo de respaldo */
+  background-color: #f0f0f0;
+}

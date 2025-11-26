@@ -1,0 +1,58 @@
+<div class="todo">
+  <h1>carrito de compras</h1>
+  <div *ngIf="productoEnCarrito.length === 0" >
+    <p>no hay productos en el carrito</p>
+  </div>
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>imagen</th>
+          <th>nombre</th>
+          <th>descripcion</th>
+          <th>precio</th>
+          <th>cantidad</th>
+          <th>acciones</th>
+        </tr>
+      </thead>
+      <tbody class="produc">
+        <tr *ngFor="let item of productoEnCarrito; let i = index">
+          <td>
+            <img
+              [src]="item.producto.imagen"
+              alt="{{ item.producto.nombre }}"
+              style="width: 50px; height: 50px"
+            />
+          </td>
+          <td>{{ item.producto.nombre }}</td>
+          <td>{{ item.producto.descripcion }}</td>
+          <td>{{ item.producto.precio }}</td>
+          <td>
+            <button (click)="quitarCantidad(i)" class="btm">-</button>
+            {{ item.cantidad }}
+            <button (click)="agregarCantidad(i)" class="btm">+</button>
+          </td>
+          <td>
+            <button
+              (click)="eliminarProducto(item.producto.id)"
+              class="setting-btn"
+            >
+              eliminar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="subtotal-info mt-3" style="text-align: right; padding: 10px;">
+        <h3>
+            Subtotal: 
+            <span style="color: green;">
+                {{ calcularSubtotal() | currency:'USD':'symbol':'1.2-2' }}
+            </span>
+        </h3>
+    </div>
+    <button class="btn btn-primary mt-2" routerLink="/compras">
+        <i class="bi bi-cart-check">Realizar Compra</i>
+    </button>
+  </div>
+</div>

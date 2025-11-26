@@ -1,0 +1,27 @@
+.fav{
+    background-color: rgba(240, 242, 244, 0.647);
+    padding: 90px;
+    margin: 50px;
+}
+h1{
+    text-align: center;
+}
+p{
+    text-align: center;
+    font-size: 20px;
+}
+.btn{
+    border: none; /*no puedo alinearlo*/
+    color: tomato;
+    background-color: aqua;
+}
+
+table{
+    border-radius: 10px;
+    width: 1000px;
+    margin: 0 auto;
+}
+.produc{
+    background-color: rgba(171, 171, 171, 0.57);
+    /*quiero que las puntas se vean redondeadas*/
+}

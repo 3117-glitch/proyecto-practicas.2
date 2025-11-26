@@ -1,0 +1,61 @@
+<!--contenedor principal del formulario con margen superior y un ancho maximo-->
+<div class="container mt-5" style="max-width: 400px;">
+    
+    <!--titulo centrado del formulario-->
+    <h2 class="text-center mb-4">Iniciar Sesion</h2>
+
+    <!--formulario de inicio de sesion-->
+    <!--el evento (ngsubmit) ejecuta la funcion iniciaSesion() lo envia el formulario -->
+    <form (ngSubmit)="iniciaSesion()">
+        <!--campo para el correo electronico-->
+        <div class="mb-3">
+            <!--etiqueta asociada al campo del email-->
+            <label for="email" class="form-label">correo electronico</label>
+
+            <!--input de tipo email-->
+            <!--([ngModel]) vincula el valor del campo con la propiedad usuario.email del componente-->
+            <!--name='email' es necesario para que angular reconozca el control dentro del formulario-->
+            <!--required obliga a completar el campo antes de enviar-->
+
+            <input 
+            type="email" 
+            id="email" 
+            class="form-control" 
+            [(ngModel)]="usuario.email" 
+            name="email" 
+            required /> 
+        </div>
+
+        <!--campo para la contraseña-->
+        <div class="mb-3">
+            <!--etiqueta asociada al campo de contraseña-->
+            <label for="password" class="form-label">contraseña</label>
+            
+            <!--input de tipo password-->
+            <!--oculta los caracteres al escribir-->
+            <!--([ngModel]) vincula el valor del campo con la propiedad usuario.password del componente-->
+            <!--required obliga a completar el campo-->
+            <input type="password"
+            id="password"
+            class="form-control"
+            [(ngModel)]="usuario.password" 
+            name="password"
+            required />
+        </div>
+
+        <!--boton para enviar el formulario-->
+        <!--type = 'submit' actia el evento ngSumit-->
+        <!--btn btn-primary aplica el estilo azul de bootstrap-->
+        <!--w-100 hace que el boton ocupe todo el ancho del contenedor-->
+
+        <button type="submit" class="btn btn-primary w-100">ingresar</button>
+    </form>
+
+    <!--mensaje de error-->
+    <!--ng*If="error" muestra el parrafo solo si existe un valor en la variable error-->
+    <!--text-danger aplica al color rojo, mt-3 agrega un margen superior y text-center centra el contenedor-->
+    <p *ngIf="error" class="text-danger mt-3 text-center">
+        {{ error }}>
+    </p>
+
+</div>

@@ -1,0 +1,11 @@
+<p>producto-detalle works!</p>
+<div *ngIf="product">
+  <h2>{{ product.nombre }}</h2>
+  <img [src]="product.imagen" alt="{{ product.nombre }}">
+  <p>{{ product.descripcion }}</p>
+
+  <h3>Productos relacionados</h3>
+  <div *ngFor="let relacionado of product.relacionados">
+    {{ relacionado.nombre }}
+  </div>
+</div>
