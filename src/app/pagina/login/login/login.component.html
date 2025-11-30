@@ -1,12 +1,12 @@
 <!--contenedor principal del formulario con margen superior y un ancho maximo-->
-<div class="container mt-5" style="max-width: 400px;">
+<div class="container mt-5" style="max-width: 450px;">
     
     <!--titulo centrado del formulario-->
     <h2 class="text-center mb-4">Iniciar Sesion</h2>
 
     <!--formulario de inicio de sesion-->
     <!--el evento (ngsubmit) ejecuta la funcion iniciaSesion() lo envia el formulario -->
-    <form (ngSubmit)="iniciaSesion()">
+    <form (ngSubmit)="iniciaSesion()" class="contenedor">
         <!--campo para el correo electronico-->
         <div class="mb-3">
             <!--etiqueta asociada al campo del email-->

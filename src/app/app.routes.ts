@@ -7,8 +7,10 @@ import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
 import { InformacionComponent } from './pagina/informacion/informacion.component';
 import { CompraComponent } from './pagina/compras/compras.component';
-import { ProductoDetalleComponent } from './pagina/producto-detalle/producto-detalle.component';
 import { LoginComponent } from './pagina/login/login/login.component';
+import { TicketComponent } from './pagina/tickets/tickets.component';
+import {AdminComponent} from './pagina/admin/admin.component'
+import { AdminGuard } from './guards/admin.guard';
 
 
 export const routes: Routes = [
@@ -19,8 +21,20 @@ export const routes: Routes = [
     {path: 'carrito', component: CarritoComponent},  
     {path: 'favoritos', component: FavoritosComponent},
     {path: 'producto', component: ProductosComponent},
-    {path: 'producto-detalle: id', component: ProductoDetalleComponent},
     {path: 'informacion', component: InformacionComponent},
     {path: 'compras', component: CompraComponent},
-    {path: 'login', component: LoginComponent}
+    {path: 'login', component: LoginComponent},
+    {path: 'ticket', component: TicketComponent},
+    {
+    path: 'ticket/:id',
+    loadComponent: () =>
+      import('./pagina/tickets/tickets.component')
+      .then(m => m.TicketComponent)
+  },
+  { 
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AdminGuard]
+  },
+  {path: 'compra', component: CompraComponent}
 ];

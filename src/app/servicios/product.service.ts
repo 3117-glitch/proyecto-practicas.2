@@ -32,14 +32,13 @@ export class ProductService {
   }
   
   //obtiene un producto especifico segun su certificado 
-  getProductById(id:number): Observable<Producto>{
-    return this.http.get<Producto>(`${this.apiUrl}/${id}`)
-    .pipe(catchError(this.handleError));
+  obtenerProductos(): Observable<any[]> {
+    // No requiere autenticación.
+    return this.http.get<any[]>(this.apiUrl);
   }
-
   //envia un nuevo producto al servidor usando formdata
   //esto permite incluir archivos de imagen en la solicitud
-  addProduct(formdata: FormData): Observable<any>{
+  crearProducto(formdata: FormData): Observable<any>{
     return this.http.post(this.apiUrl, formdata,{
       headers: this.getHeaders()
     })
@@ -48,7 +47,7 @@ export class ProductService {
 
 //atualiza un producto segun su id
 //esta operacion esta protegida y requiere un token valido
-  updateProduct(id:number, productData: FormData): Observable<any>{
+  actualizarProducto(id:number, productData: FormData): Observable<any>{
     return this.http.put(`$(this.apiUrl)/${id}`, FormData,{
       headers: this.getHeaders()
     })
@@ -57,7 +56,7 @@ export class ProductService {
 
   //elimina un producto segun su id
   //esta operacion estta protegida y requiere un token valido 
-  deleteProduct(id:number): Observable<any>{
+  eliminarProducto(id:number): Observable<any>{
     return this.http.delete(`${this.apiUrl}/${id}`, {
       headers: this.getHeaders()
   })
