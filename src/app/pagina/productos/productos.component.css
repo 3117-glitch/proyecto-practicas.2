@@ -1,54 +1,70 @@
-.container-mb-10 {
-  padding: 25px;
-  background-color: rgba(255, 255, 255, 0.442);
-  margin: 25px;
-  display: flex;
-  flex-direction: column; /* 🔸 Para que los filtros queden arriba y las cards abajo */
-  gap: 30px;
+.productos-container {
+  text-align: center;
+  padding: 20px;
 }
 
-/* Filtros */
-.filtros-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 100px;
-  justify-content: flex-start;
-  align-items: flex-end;
-  background: #c8c8c8;
-  padding: 15px;
-  border-radius: 20px;
-  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+.buscador {
+  margin-bottom: 20px;
 }
 
-.filtro {
-  display: flex;
-  flex-direction: column;
-  min-width: 180px;
+.buscador input {
+  padding: 8px;
+  width: 250px;
+  margin-right: 10px;
 }
 
-.form-control, .form-select {
-  width: 100%;
-}
-
-/* Cards */
-.cards-container {
+.productos-lista {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  justify-content: start;
 }
 
-.card {
-  width: 220px;
-  background: #ffffffc7;
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+.producto-card {
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
-.product-image {
+.producto-imagen {
   width: 100%;
-  height: 150px;
+  height: 180px;
   object-fit: contain;
   margin-bottom: 10px;
+}
+
+.precio {
+  font-weight: bold;
+  color: #333;
+}
+
+.disponible {
+  color: green;
+}
+
+.no-disponible {
+  color: red;
+}
+
+.botones button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.botones button:hover {
+  opacity: 0.9;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.titulo{
+  color: #ccc;
 }

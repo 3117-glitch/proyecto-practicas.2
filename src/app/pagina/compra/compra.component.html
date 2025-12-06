@@ -1,39 +1,61 @@
 <p>compra works!</p>
 <div class="container mt-4">
 
-  <h2 class="mb-4">Historial de Compras</h2>
+  <h2 class="text-center mb-4">Finalizar Compra</h2>
 
-  <div *ngIf="cargando">Cargando compras...</div>
-
-  <div *ngIf="error" class="alert alert-danger">
-    {{ error }}
+  <div *ngIf="mensaje" class="alert alert-info text-center">
+    {{ mensaje }}
   </div>
 
-  <div *ngIf="!cargando && compras.length === 0">
-    <p>No hay compras registradas aún.</p>
-  </div>
-
-  <div class="list-group" *ngIf="compras.length > 0">
-
-    <div class="list-group-item mb-2" *ngFor="let c of compras">
-
-      <h5>Compra #{{ c.id_compra }}</h5>
-
-      <p class="mb-1">
-        <strong>Fecha:</strong> {{ c.fecha }} <br>
-        <strong>Total:</strong> ${{ c.total }} <br>
-        <strong>Ítems:</strong> {{ c.items?.length }}
-      </p>
-
-      <a
-        class="btn btn-primary btn-sm"
-        [routerLink]="['/ticket', c.id_compra]"
-      >
-        Ver Ticket
-      </a>
-
+  <div class="card shadow-sm mb-4" *ngIf="productos.length > 0">
+    <div class="card-header bg-primary text-white">
+      <strong>Productos en tu carrito</strong>
     </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let p of productos" class="list-group-item d-flex">
+        <img *ngIf="p.imagen"
+          [src]="'http://localhost/api_proyecto/public/uploads/' + p.imagen"
+          class="rounded me-3"
+          style="width: 70px; height: 70px; object-fit: cover;">
+        <div class="flex-grow-1">
+          <strong>{{ p.nombre }}</strong>
+          <p class="text-muted">{{ p.descripcion }}</p>
+          <small>
+            Cantidad: {{ p.cantidad }} <br>
+            Precio: ${{ p.precio_unitario }} <br>
+            Subtotal: <strong>${{ p.subtotal }}</strong>
+          </small>
+        </div>
+      </li>
+    </ul>
+  </div>
 
+  <div class="card shadow-sm mb-4" *ngIf="productos.length > 0">
+    <div class="card-body">
+      <h4>Resumen</h4>
+      <p>Subtotal: ${{ subtotal }}</p>
+      <p>Envío: ${{ envio }}</p>
+      <hr>
+      <h4>Total: <strong>${{ total }}</strong></h4>
+    </div>
+  </div>
+
+  <div class="card shadow-sm" *ngIf="productos.length > 0">
+    <div class="card-header bg-success text-white">Datos de envío</div>
+    <div class="card-body">
+      <input class="form-control mb-3" placeholder="Dirección" [(ngModel)]="datos.direccion">
+      <input class="form-control mb-3" placeholder="Teléfono" [(ngModel)]="datos.telefono">
+
+      <button class="btn btn-success w-100"
+        (click)="finalizarCompra()"
+        [disabled]="cargando">
+        {{ cargando ? 'Procesando...' : 'Confirmar compra' }}
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="productos.length === 0" class="alert alert-warning text-center">
+    Tu carrito está vacío.
   </div>
 
 </div>

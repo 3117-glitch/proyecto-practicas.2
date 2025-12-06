@@ -1,76 +1,95 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
-import { Producto } from '../modelos/producto.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  //url base del modulo de productos de la api 
-  private apiUrl= 'http://localhost:3000/api_proyect/products';
 
+  // URL base para todos los endpoints de productos.
+  // Backend tiene rutas como:
+  //   GET    /products
+  //   POST   /products
+  //   PUT    /products/:id
+  //   DELETE /products/:id
+  private apiUrl = 'http://localhost/api_proyecto/public/products';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  //construye las cabeceras http necesarias para la solicitudes protegidas}
-  //si existe un token en localStorage, lo agrega a las cabeceras autorizada 
-  private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    let headers = new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });  
-
-    return headers 
-  }
-
-  //obtiene la lista de productos desde la api
-  //es una ruta publica y no requiere token
-  getProduct(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.apiUrl)
-    .pipe(catchError(this.handleError));
-  }
-  
-  //obtiene un producto especifico segun su certificado 
+  // ============================================================
+  // OBTENER TODOS LOS PRODUCTOS
+  // GET /products
+  // ============================================================
   obtenerProductos(): Observable<any[]> {
     // No requiere autenticación.
     return this.http.get<any[]>(this.apiUrl);
   }
-  //envia un nuevo producto al servidor usando formdata
-  //esto permite incluir archivos de imagen en la solicitud
-  crearProducto(formdata: FormData): Observable<any>{
-    return this.http.post(this.apiUrl, formdata,{
-      headers: this.getHeaders()
-    })
-    .pipe(catchError(this.handleError));
+
+  // ============================================================
+  // CREAR PRODUCTO (solo admin)
+  // POST /products
+  // Se envía FormData porque incluye imágenes.
+  // ============================================================
+  crearProducto(formData: FormData): Observable<any> {
+    return this.http.post(
+      this.apiUrl,
+      formData,
+      {
+        // Content-Type debe quedar vacío para que el navegador
+        // genere el multipart/form-data automáticamente.
+        headers: this.getAuthHeaders(false)
+      }
+    );
   }
 
-//atualiza un producto segun su id
-//esta operacion esta protegida y requiere un token valido
-  actualizarProducto(id:number, productData: FormData): Observable<any>{
-    return this.http.put(`$(this.apiUrl)/${id}`, FormData,{
-      headers: this.getHeaders()
-    })
-    .pipe(catchError(this.handleError));
-  }
+  // ============================================================
+  // ACTUALIZAR PRODUCTO (solo admin)
+  // PUT /products/:id
+  // Como Angular no manda PUT con FormData correctamente,
+  // se usa técnica _method=PUT que el backend interpreta.
+  // ============================================================
+ actualizarProducto(id: number, formData: FormData): Observable<any> {
+  formData.append("_method", "PUT");
 
-  //elimina un producto segun su id
-  //esta operacion estta protegida y requiere un token valido 
-  eliminarProducto(id:number): Observable<any>{
-    return this.http.delete(`${this.apiUrl}/${id}`, {
-      headers: this.getHeaders()
-  })
-  .pipe(catchError(this.handleError));
+  return this.http.post(`${this.apiUrl}/${id}`, formData, {
+    headers: this.getAuthHeaders(false)
+  });
 }
 
-//manejo centralizado de errores para todas las solcitudes
-//devuelve un mensaje en caso de fallo 
-private handleError(error: any){
-  console.error('error en ProductService:', error);
-  let msg: 'ocurrio un error al procesar la solicitud';
-  if(error.error?.message){
-    msg = error.error.message;
+
+
+  // ============================================================
+  // ELIMINAR PRODUCTO (solo admin)
+  // DELETE /products/:id
+  // ============================================================
+  eliminarProducto(id: number): Observable<any> {
+    return this.http.delete(
+      `${this.apiUrl}/${id}`,
+      {
+        headers: this.getAuthHeaders()
+      }
+    );
   }
-  return throwError(() => new error(msg))
-}
+
+  // ============================================================
+  // HEADERS DE AUTENTICACIÓN
+  // Si json=true → se agrega Content-Type: application/json
+  // Si json=false → se omite para enviar FormData
+  // ============================================================
+  private getAuthHeaders(json: boolean = true): HttpHeaders {
+    const token = (typeof localStorage !== 'undefined')
+      ? localStorage.getItem('token') || ''
+      : '';
+
+    // Siempre enviamos el token.
+    const headers: any = { Authorization: `Bearer ${token}` };
+
+    // Solo agregamos JSON cuando NO se envía FormData.
+    if (json) {
+      headers['Content-Type'] = 'application/json';
+    }
+
+    return new HttpHeaders(headers);
+  }
 }

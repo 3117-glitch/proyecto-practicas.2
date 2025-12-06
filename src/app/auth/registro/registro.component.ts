@@ -42,7 +42,7 @@ export class RegistroComponent {
 
       // Si el registro es exitoso:
       next: () => {
-        // Alerta rápida; puede reemplazarse por un toast más elegante.
+        // Alerta rápida
         alert('Registro exitoso. Ahora puede iniciar sesión.');
 
         // Redirige al usuario a la pantalla de login.

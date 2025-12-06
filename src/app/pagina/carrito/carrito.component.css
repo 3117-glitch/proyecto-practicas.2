@@ -15,7 +15,7 @@ h1{
   width: 300px;
 }
 .card{
-  background-color: #ffffffa9;
+  background-color: #818181b3;
   border-radius: 10px;
   padding: 20px;
   margin: 20px auto;
@@ -30,7 +30,7 @@ h1{
 
 P{
   text-align: center;
-  color: #000000;
+  color: #ffffff;
 }
 
 .setting-btn{
@@ -45,4 +45,11 @@ P{
   border: none;
   padding: 5px 5px;
   border-radius: 10px;
+}
+.titulo{
+  color: #ffffff;
+}
+img{
+  width: 200px;
+  height: 200px;
 }

@@ -40,10 +40,43 @@
         <li class="nav-item">
           <a class="nav-link dropdown" routerLink="contacto">Contactos</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link dropdown" routerLink="login">login</a>
+        </li> -->
+      </ul>
+
+      <ul>
+        <!-- ADMIN SOLO SI ES ADMIN -->
+        <li class="nav-item" *ngIf="usuario?.rol === 'admin'">
+          <a routerLink="/admin" routerLinkActive="active" class="nav-link text-warning fw-bold">
+            Admin
+          </a>
         </li>
       </ul>
+
+      <!-- SI ESTÁ LOGUEADO -->
+        <ng-container *ngIf="clientesService.isLoggedIn(); else sinSesion">
+          
+          <!-- USUARIO (ya no se llama getUsuario() en el HTML) -->
+          <span class="user-label me-3">
+            {{ usuario?.nombre }} ({{ usuario?.rol }})
+          </span>
+
+          <button class="btn btn-sm btn-logout" (click)="logout()">
+            Cerrar sesión
+          </button>
+        </ng-container>
+
+        <!-- SI NO ESTÁ LOGUEADO -->
+        <ng-template #sinSesion>
+          <a routerLink="/login" class="btn btn-sm btn-outline me-2">
+            Iniciar sesión
+          </a>
+          <a routerLink="/register" class="btn btn-sm btn-warning">
+            Registrarse
+          </a>
+        </ng-template>
+
     </div>
   </div>
 </nav>

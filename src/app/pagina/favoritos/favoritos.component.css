@@ -1,27 +1,26 @@
-.fav{
-    background-color: rgba(240, 242, 244, 0.647);
-    padding: 90px;
-    margin: 50px;
-}
-h1{
-    text-align: center;
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  color: #ffffff;
 }
 p{
-    text-align: center;
-    font-size: 20px;
-}
-.btn{
-    border: none; /*no puedo alinearlo*/
-    color: tomato;
-    background-color: aqua;
-}
-
-table{
-    border-radius: 10px;
-    width: 1000px;
-    margin: 0 auto;
+  color: #ffffff;
 }
 .produc{
-    background-color: rgba(171, 171, 171, 0.57);
-    /*quiero que las puntas se vean redondeadas*/
+  color: #ffffff;
+}
+th, td{
+  color: #000000;
+}
+
+.contenedor{
+  max-width: 1000px;              /* Tamaño elegante */
+  margin: 50px auto;             /* Centrado */
+  padding: 50px;
+  background: rgba(255, 255, 255, 0.75);  /* Blanco semitransparente */
+  backdrop-filter: blur(6px);    /* Efecto glass suave */
+  border-radius: 10px;           /* Bordes redondeados */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);  /* Sombra moderna */
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  animation: fadeIn .4s ease-in-out;
 }

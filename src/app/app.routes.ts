@@ -6,11 +6,13 @@ import { ProductosComponent } from './pagina/productos/productos.component';
 import { CarritoComponent } from './pagina/carrito/carrito.component';
 import { FavoritosComponent } from './pagina/favoritos/favoritos.component';
 import { InformacionComponent } from './pagina/informacion/informacion.component';
-import { CompraComponent } from './pagina/compras/compras.component';
+import { ComprasComponent } from './pagina/compras/compras.component';
 import { LoginComponent } from './pagina/login/login/login.component';
 import { TicketComponent } from './pagina/tickets/tickets.component';
 import {AdminComponent} from './pagina/admin/admin.component'
 import { AdminGuard } from './guards/admin.guard';
+import { RegistroComponent } from './auth/registro/registro.component';
+import { CompraComponent } from './pagina/compra/compra.component';
 
 
 export const routes: Routes = [
@@ -22,7 +24,7 @@ export const routes: Routes = [
     {path: 'favoritos', component: FavoritosComponent},
     {path: 'producto', component: ProductosComponent},
     {path: 'informacion', component: InformacionComponent},
-    {path: 'compras', component: CompraComponent},
+    {path: 'compras', component: ComprasComponent},
     {path: 'login', component: LoginComponent},
     {path: 'ticket', component: TicketComponent},
     {
@@ -36,5 +38,6 @@ export const routes: Routes = [
     component: AdminComponent,
     canActivate: [AdminGuard]
   },
-  {path: 'compra', component: CompraComponent}
+  {path: 'compra', component: CompraComponent},
+  { path: 'register', component: RegistroComponent },
 ];

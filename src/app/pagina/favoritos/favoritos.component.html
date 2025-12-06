@@ -4,7 +4,7 @@
     <p>No tiene un producto en favoritos</p>
   </div>
 
-  <table>
+  <table class="contenedor">
     <thead>
       <button class="btn" (click)="vaciarFavoritos()">vaciar</button>
       <tr>
@@ -14,13 +14,12 @@
         <th>precio</th>
       </tr>
     </thead>
-    <tbody class="produc">
+    <tbody>
       <tr *ngFor="let item of productoEnFavoritos; let i = index">
         <td>
           <img
             [src]="item.producto.imagen"
             alt="{{ item.producto.nombre }}"
-            style="width: 50px; height: 50px"
           />
         </td>
         <td>{{ item.producto.nombre }}</td>

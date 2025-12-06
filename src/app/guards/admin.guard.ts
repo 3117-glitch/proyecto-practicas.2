@@ -1,34 +1,31 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
+import { CanActivate, Router } from '@angular/router';
+import { AuthService } from '../servicios/auth.service';
 
-//importa CanActivate (interfaz usada para proteger rutas) y router (para redireccionar)
-import { ActivatedRouteSnapshot, CanActivate, GuardResult, MaybeAsync, Router, RouterStateSnapshot } from "@angular/router";
-
-//importa el servicio de autenticación que contiene la logica para verificar roles de usuario
-import { AuthService } from "../servicios/auth.service";
-
-//declara la clase como inyectable y disponible en toda la aplicacion
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate {
-    //inyeccion de dependencias
-    //- AuthService: para comprobar si el usuario tiene rol de administrador
-    // - Router: para redirigir al usuario si no tiene permiso
-    constructor(private authService: AuthService, private router: Router){}
 
-    //metodo obligatorio de la interfaz canActivate , que decide si se puede acceder a una ruta
-    canActivate(): boolean{
-        //verifica si el usuario es administrador meiante el metodo del servicio de autenticacion
-        if(this.authService.esAdmin()){
-            //si el usuario tiene rol de admin se permite el acceso
-            return true
-        } else {
-            //si no es administrador, muestra un mensaje e alerta 
-            alert ('acceso denegado. Solo administradores pueden acceder a esta cuenta');
+  constructor(
+    // Servicio de autenticación para verificar token, usuario y rol.
+    private authService: AuthService,
 
-            //redirige al usuario a la pagina de inicio 
-            this.router.navigate(['/inicio'])
+    // Router para redirigir si el usuario no tiene permisos.
+    private router: Router
+  ) {}
 
-            //devuelve false para bloquear el acceso a la ruta
-            return false
-        }
+  // Método que Angular ejecuta antes de permitir el acceso a una ruta protegida.
+  canActivate(): boolean {
+
+    // Verifica primero si el usuario tiene sesión activa
+    // y luego si su rol es 'admin'.
+    if (this.authService.isLoggedIn() && this.authService.esAdmin()) {
+      return true; // Permite el acceso a la ruta.
     }
+
+    // Si no está logueado o no es admin,
+    // lo redirige a la pantalla de inicio de sesión.
+    this.router.navigate(['/inicio-sesion']);
+
+    return false; // Bloquea el acceso a la ruta protegida.
+  }
 }

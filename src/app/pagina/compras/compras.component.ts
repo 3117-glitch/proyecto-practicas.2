@@ -11,7 +11,7 @@ import { CarritoService } from '../../servicios/carrito.service';
   templateUrl: './compras.component.html',
   styleUrl: './compras.component.css'
 })
-export class CompraComponent implements OnInit {
+export class ComprasComponent implements OnInit {
   //Declaracion del formulario reactivo para la compra
   formularioCompra!: FormGroup;
 
@@ -90,7 +90,7 @@ export class CompraComponent implements OnInit {
   }
 
   //Genera el PDF con jsPDF y crea la URL para mostrar en iframe dentro del modal
-  generarPDFModal():void{
+/*   generarPDFModal():void{
     if(!this.factura) return; //Si no hay Factura, no hace nada
 
     const doc = new jsPDF(); //Crea instancia de jsPDF
@@ -135,6 +135,63 @@ export class CompraComponent implements OnInit {
     
     this.mostrarModal = true;
   }
+ */
+
+  //modal hecho con la IA 
+generarPDFModal(): void {
+  if (!this.factura) return;
+
+  const doc = new jsPDF();
+
+  // --- DATOS FACTURA ---
+  doc.setFontSize(18);
+  doc.text('Factura de Compra', 14, 20);
+
+  doc.setFontSize(12);
+  doc.text(`Fecha: ${this.factura.fecha.toLocaleString()}`, 14, 30);
+
+  doc.text('Cliente:', 14, 40);
+  const c = this.factura.cliente;
+
+  doc.text(`Nombre: ${c.nombre}`, 20, 50);
+  doc.text(`Direccion: ${c.direccion}`, 20, 60);
+  doc.text(`Correo: ${c.correo}`, 20, 70);
+  doc.text(`Telefono: ${c.telefono}`, 20, 80);
+  doc.text(`Ciudad: ${c.ciudad}`, 20, 90);
+  doc.text(`Provincia: ${c.provincia}`, 20, 100);
+  doc.text(`Codigo Postal: ${c.codigoPostal}`, 20, 110);
+
+  // --- PRODUCTOS ---
+  let y = 120;
+  doc.text('Productos:', 14, y);
+
+  this.factura.productos.forEach((item: any, index: number) => {
+
+  const nombre = item.producto?.nombre ?? "Producto sin nombre";
+  const precio = item.producto?.precio ?? item.precio_unitario ?? 0;
+
+  y += 10;
+  doc.text(
+    `${index + 1}. ${nombre} - Cantidad: ${item.cantidad} - Precio: $${precio.toFixed(2)} - Subtotal: $${(precio * item.cantidad).toFixed(2)}`,
+    20,
+    y
+  );
+});
+
+
+  y += 10;
+  doc.text(`Costo de Envio: $${this.factura.envio.toFixed(2)}`, 14, y);
+  y += 10;
+  doc.text(`Total a Pagar: $${this.factura.total.toFixed(2)}`, 14, y);
+
+  // ---------- AQUI VA LA SOLUCIÓN 1 ----------
+  const blob = doc.output('blob');
+  const url = URL.createObjectURL(blob);
+
+  // Abre el PDF directo en otra pestaña (seguro / sin iframe)
+  window.open(url, '_blank');
+}
+
 
   
   cerrarModal(): void{
@@ -146,17 +203,15 @@ export class CompraComponent implements OnInit {
     }
   }
   
-  imprimirPDF(): void{
-    
-    const iframe :  HTMLIFrameElement | null = document.getElementById('pdfFrame') as HTMLIFrameElement;
+  imprimirPDF(): void {
+  const iframe = document.getElementById('pdfFrame') as HTMLIFrameElement;
 
-    
-    if(iframe && iframe.contentWindow){
-      
-      iframe.contentWindow.focus();
-
-      
-      iframe.contentWindow.print();
-    }
+  if (iframe && iframe.contentWindow) {
+    setTimeout(() => {
+      iframe.contentWindow!.focus();
+      iframe.contentWindow!.print();
+    }, 300);
   }
+}
+
 }
