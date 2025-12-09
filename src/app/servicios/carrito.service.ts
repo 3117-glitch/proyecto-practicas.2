@@ -9,7 +9,7 @@ import { Producto } from '../modelos/producto.model';
 export class CarritoService {
 
   // URL base del backend para las rutas del carrito.
-  private apiUrl = 'http://localhost/api_proyecto/public/carrito';
+  private apiUrl = 'http://localhost/Api-Proyecto/public/carrito';
 
   // BehaviorSubject almacena el estado actual del carrito de forma reactiva.
   // Cualquier componente suscrito se actualiza automáticamente cuando cambia.

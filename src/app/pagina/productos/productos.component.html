@@ -1,88 +1,4 @@
-<!-- <div class="container-mb-10">
-  <h1>Nuestros productos y servicios</h1>
-  FILTROS 
-  <div class="filtros-container">
-    <div class="filtro">
-      <label>Categoría</label>
-      <select class="form-select" [(ngModel)]="selectedCategory">
-        <option value="">Todas</option>
-        <option *ngFor="let categoria of categories" [value]="categoria">
-          {{ categoria }}
-        </option>
-      </select>
-    </div>
 
-    <div class="filtro">
-      <label>Precio min:</label>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="minPrecio"
-        name="minprecio"
-      />
-    </div>
-
-    <div class="filtro">
-      <label>Precio max:</label>
-      <input
-        type="number"
-        class="form-control"
-        [(ngModel)]="maxPrecio"
-        name="maxprecio"
-      />
-    </div>
-
-    <div class="filtro">
-      <button
-        type="button"
-        class="btn btn-secondary w-100"
-        (click)="resetFilters()"
-      >
-        Limpiar
-      </button>
-    </div>
-  </div>
-
-   productos 
-  <div class="cards-container">
-    <ng-container *ngIf="filteredProducts && filteredProducts.length">
-      <ng-container *ngFor="let producto of filteredProducts">
-        <div *ngIf="producto.disponibilidad" class="card">
-          <img
-            [src]="producto.imagen"
-            alt="{{ producto.nombre }}"
-            class="product-image"
-          />
-          <h2>{{ producto.nombre }}</h2>
-          <p>{{ producto.descripcion }}</p>
-          <p>Precio: {{ producto.precio }}</p>
-          <p>Categoría: {{ producto.categoria }}</p>
-
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            (click)="agregar(producto)"
-          >
-            Agregar al carrito
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-primary"
-            (click)="agregarAFavoritos(producto)"
-          >
-            Agregar a favoritos
-          </button>
-                <button type="button" [routerLink]="['/producto-detalle', producto.id]">Ver Más</button>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div *ngIf="filteredProducts.length === 0" class="text-muted">
-      No hay productos que coincidan con los filtros aplicados.
-    </div>
-  </div>
-</div>
--->
 <div class="container my-5">
   <h2 class="text-center mb-4" class="titulo">Nuestros Productos</h2>
 
@@ -100,7 +16,7 @@
     <div *ngFor="let producto of productos" class="col-md-4">
       <div class="card h-100 shadow-sm">
         <img
-          [src]="'http://localhost/api_proyecto/public/uploads/' + producto.imagen"
+          [src]="'http://localhost/Api-Proyecto/public/uploads/' + producto.imagen"
           class="card-img-top"
           alt="{{ producto.nombre }}"
           style="object-fit: cover; height: 220px;"

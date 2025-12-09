@@ -9,14 +9,12 @@ export class CompraService {
 
   // URL base que apunta directamente al archivo Routes.php del backend,
   // por eso no termina en "/compras", sino en "/public".
-  private apiUrl = 'http://localhost/api_proyecto/public';
+  private apiUrl = 'http://localhost/Api-Proyecto/public';
 
   constructor(private http: HttpClient) {}
 
-  // ---------------------------------------------------------
   // FINALIZAR COMPRA
   // Envia los datos de la compra al backend (POST /compras/finalizar)
-  // ---------------------------------------------------------
   finalizarCompra(data: any): Observable<any> {
 
     // Se envían los campos (dirección, teléfono, etc.)

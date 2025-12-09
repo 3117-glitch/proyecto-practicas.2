@@ -18,7 +18,8 @@ export class RegistroComponent {
   nuevoUsuario = {
     nombre: '',
     email: '',
-    password: ''
+    password: '',
+    rol: 'user'  // Rol predeterminado al registrar un nuevo usuario.,
   };
 
   // Texto para mostrar mensajes de error en pantalla.

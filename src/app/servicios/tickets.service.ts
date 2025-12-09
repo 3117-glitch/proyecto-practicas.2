@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class TicketService {
 
   // URL base donde están las rutas principales del backend.
-  private apiUrl = 'http://localhost/api_proyecto/public';
+  private apiUrl = 'http://localhost/Api-Proyecto/public';
 
   constructor(private http: HttpClient) {}
 

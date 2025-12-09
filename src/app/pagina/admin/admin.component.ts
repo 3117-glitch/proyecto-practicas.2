@@ -134,7 +134,7 @@ export class AdminComponent implements OnInit {
 
     // Arma la URL completa para mostrar la imagen previa.
     this.imagenPrevia = producto.imagen
-      ? `http://localhost/api_proyecto/public/uploads/${producto.imagen}`
+      ? `http://localhost/Api-Proyecto/public/uploads/${producto.imagen}`
       : null;
   }
 

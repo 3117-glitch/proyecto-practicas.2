@@ -90,53 +90,6 @@ export class ComprasComponent implements OnInit {
   }
 
   //Genera el PDF con jsPDF y crea la URL para mostrar en iframe dentro del modal
-/*   generarPDFModal():void{
-    if(!this.factura) return; //Si no hay Factura, no hace nada
-
-    const doc = new jsPDF(); //Crea instancia de jsPDF
-
-    //Agrega titulo y fecha al PDF
-    doc.setFontSize(18)
-    doc.text('Factura de Compra',14,20)
-
-    doc.setFontSize(12);
-    doc.text(`Fecha: ${this.factura.fecha.toLocaleString()}`,14,30)
-
-    doc.text('Cliente:',14,40);
-    const c = this.factura.cliente;
-    doc.text(`Nombre: ${c.nombre}`,20,50);
-    doc.text(`Direccion: ${c.direccion}`,20,60);
-    doc.text(`Correo: ${c.correo}`,20,70);
-    doc.text(`Telefono: ${c.telefono}`,20,80);
-    doc.text(`Ciudad: ${c.ciudad}`,20,90);
-    doc.text(`Provincia: ${c.provincia}`,20,100);
-    doc.text(`Codigo Postal: ${c.codigoPostal}`,20,110);
-  
-  
-    let y = 120
-    doc.text('Productos:',14,y)
-
-    this.factura.productos.forEach((item:any, index:number) => {
-      y += 10;
-      doc.text(
-        `${index+1}. ${item.producto.nombre} - Cantidad: ${item.cantidad} - Precio: ${item.producto.precio.toFixed(2)} - Subtotal: $${(item.producto.precio * item.cantidad).toFixed(2)}`,20,y)
-    })
-    
-    //Costos finales
-    y += 10;
-    doc.text(`Costo de Envio: $${this.factura.envio.toFixed(2)}`,14,y);
-    y += 10;
-    doc.text(`Total a Pagar: $${this.factura.total.toFixed(2)}`,14,y);
-
-  
-    const pdfBlob = doc.output('blob')
-    this.pdfSrc = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(pdfBlob))
-
-    
-    this.mostrarModal = true;
-  }
- */
-
   //modal hecho con la IA 
 generarPDFModal(): void {
   if (!this.factura) return;
