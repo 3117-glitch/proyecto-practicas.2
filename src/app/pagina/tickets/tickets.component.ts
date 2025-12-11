@@ -46,7 +46,7 @@ export class TicketComponent implements OnInit {
         this.ticket = ticket;
 
         // Construye manualmente la URL pública donde se guarda el PDF en el servidor.
-        const url = `http://localhost/Api-Proyecto/public/tickets/ticket_${ticket.numero_ticket}.pdf`;
+        const url = `http://localhost/api_proyecto/public/tickets/ticket_${ticket.numero_ticket}.pdf`;
 
         // Angular bloquea URLs externas por seguridad, así que hay que "sanitizar" la URL
         // para usarla como src en un <iframe> o <embed>.

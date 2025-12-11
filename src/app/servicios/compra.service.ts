@@ -9,7 +9,7 @@ export class CompraService {
 
   // URL base que apunta directamente al archivo Routes.php del backend,
   // por eso no termina en "/compras", sino en "/public".
-  private apiUrl = 'http://localhost/Api-Proyecto/public';
+  private apiUrl = 'http://localhost/api_proyecto/public';
 
   constructor(private http: HttpClient) {}
 

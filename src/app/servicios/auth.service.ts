@@ -9,7 +9,7 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
 
   // URL base del módulo de usuarios en tu backend.
-  private apiUrl = 'http://localhost/Api-Proyecto/public/users';
+  private apiUrl = 'http://localhost/api_proyecto/public/users';
 
   // Indica si el código corre en navegador (true) o en servidor (false, en SSR).
   private isBrowser: boolean;

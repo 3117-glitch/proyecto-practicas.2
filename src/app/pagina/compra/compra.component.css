@@ -1,0 +1,106 @@
+/* ====== Layout general ====== */
+.container {
+  max-width: 850px;   /* Más ancho, menos comprimido */
+  margin: 40px auto;
+  padding: 0 15px;
+}
+
+h2 {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+/* ====== Tarjetas ====== */
+.card {
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+.card-header {
+  background: #f2f2f2 !important;
+  color: #444 !important;
+  font-size: 1.15rem;
+  padding: 14px 20px;
+}
+
+.card-body {
+  padding: 25px;
+}
+
+/* ====== Lista de productos ====== */
+.list-group-item {
+  padding: 20px;
+  border-bottom: 1px solid #ebebeb;
+  background: #fafafa;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+.list-group-item img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.list-group-item strong {
+  color: #222;
+  font-size: 1.1rem;
+}
+
+.list-group-item p {
+  margin: 4px 0;
+  color: #777;
+  font-size: 0.95rem;
+}
+
+/* ====== Resumen ====== */
+.card-body h4 {
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.card-body p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* ====== Inputs ====== */
+.form-control {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #d0d0d0;
+  background: #fdfdfd;
+  transition: 0.2s;
+}
+
+.form-control:focus {
+  border-color: #b0b0b0;
+  box-shadow: 0 0 6px rgba(0,0,0,0.08);
+}
+
+/* ====== Botón ====== */
+.btn-success {
+  padding: 14px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: #5c5c5c;
+  border: none;
+}
+
+.btn-success:hover {
+  background: #4a4a4a;
+}
+
+/* ====== Alertas ====== */
+.alert {
+  border-radius: 12px;
+  font-size: 1rem;
+}

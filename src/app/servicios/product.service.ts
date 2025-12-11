@@ -13,7 +13,7 @@ export class ProductService {
   //   POST   /products
   //   PUT    /products/:id
   //   DELETE /products/:id
-  private apiUrl = 'http://localhost/Api-Proyecto/public/products';
+  private apiUrl = 'http://localhost/api_proyecto/public/products';
 
   constructor(private http: HttpClient) {}
 
